@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    .alarm-container {
+      background-color: #8e44ad; 
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      color: #fff;
+    }
+
+    h1 {
+      margin-top: 0;
+    }
+
+    #seconds-input {
+      font-size: 18px;
+      padding: 10px;
+    }
+
+    #start-button, #stop-button {
+      padding: 10px 20px;
+      font-size: 18px;
+      background-color: #fff;
+      color: #8e44ad;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 10px;
+    }
+  </style>
+  <title>Alarm</title>
+</head>
+<body>
+  <div class="alarm-container">
+    <h1>Alarm</h1>
+    <label for="seconds-input">Set alarm in seconds:</label>
+    <input type="number" id="seconds-input">
+    <button id="start-button">Start</button>
+    <button id="stop-button">Stop</button>
+  </div>
+  
+  <script>
+    let alarmTimeout;
+
+    document.getElementById('start-button').addEventListener('click', () => {
+      const secondsInput = document.getElementById('seconds-input');
+      const seconds = parseInt(secondsInput.value);
+
+      if (!isNaN(seconds) && seconds > 0) {
+        alarmTimeout = setTimeout(() => {
+          alert('Alarm!'); 
+        }, seconds * 1000); 
+      } else {
+        alert('Please enter a valid number of seconds.');
+      }
+    });
+
+    document.getElementById('stop-button').addEventListener('click', () => {
+      if (alarmTimeout) {
+        clearTimeout(alarmTimeout);
+        alert('Alarm stopped.');
+      }
+    });
+  </script>
+</body>
+</html>
